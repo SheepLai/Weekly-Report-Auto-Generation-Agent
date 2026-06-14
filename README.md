@@ -103,6 +103,11 @@ pip install -r requirements.txt
     "tools": ["format_work_items", "generate_markdown_report", "..."]
 }
 ```
+### 运行 Agent（demo）
+
+```bash
+python -m src.main_simple
+```
 
 ### 运行 Agent
 
