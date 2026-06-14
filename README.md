@@ -82,7 +82,6 @@
 ### 安装依赖
 
 ```bash
-cd /path/to/project
 pip install -r requirements.txt
 ```
 
