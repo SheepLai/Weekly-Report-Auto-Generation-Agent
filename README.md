@@ -77,13 +77,13 @@
 ### 环境要求
 
 - Python 3.10+
-- uv 包管理器
+- pip 包管理器
 
 ### 安装依赖
 
 ```bash
 cd /path/to/project
-uv sync
+pip install -r requirements.txt
 ```
 
 ### 配置说明
@@ -108,7 +108,7 @@ uv sync
 ### 运行 Agent
 
 ```bash
-uv run python -m src.main
+python -m src.main
 ```
 
 ### 使用示例
