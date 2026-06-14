@@ -12,7 +12,16 @@ from langgraph.graph import MessagesState
 from langgraph.graph.message import add_messages
 from langchain_core.messages import AnyMessage, HumanMessage
 from coze_coding_utils.runtime_ctx.context import default_headers, new_context
-from storage.memory.memory_saver import get_memory_saver
+
+# 尝试从 storage.memory 导入 memory_saver，如果失败则使用 langgraph 的 MemorySaver
+try:
+    from storage.memory.memory_saver import get_memory_saver
+    def get_checkpointer():
+        return get_memory_saver()
+except ImportError:
+    from langgraph.checkpoint.memory import MemorySaver
+    def get_checkpointer():
+        return MemorySaver()
 
 from tools.weekly_report_tools import (
     format_work_items,
@@ -85,6 +94,6 @@ def build_agent(ctx=None):
         model=llm,
         system_prompt=cfg.get("sp"),
         tools=TOOLS,
-        checkpointer=get_memory_saver(),
+        checkpointer=get_checkpointer(),
         state_schema=AgentState,
     )
